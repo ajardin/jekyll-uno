@@ -29,8 +29,7 @@ defaults:
 
 # Build settings
 destination: _site
-paginate: 10
-permalink: /:year/:title/
+permalink: none
 markdown: kramdown
 highlighter: rouge
 
@@ -44,5 +43,5 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-plugins: ['jekyll-paginate', 'jekyll-sitemap']
+plugins: ['jekyll-sitemap']
 exclude: ['docker-compose.yml', 'Gemfile', 'Gemfile.lock', 'LICENSE', 'README.md']

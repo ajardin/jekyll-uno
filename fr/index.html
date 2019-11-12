@@ -1,12 +1,17 @@
 ---
 layout: default
-robots: noindex
+reference: index
+lang: fr
 ---
+
+<div class="post-meta">{% include languages.html %}</div>
+<hr class="post-list__divider">
 
 <div class="main-post-list">
 
   <ol class="post-list">
-    {% for post in paginator.posts %}
+    {% assign posts=site.posts | where:"lang", page.lang %}
+    {% for post in posts %}
       <li>
         <h2 class="post-list__post-title post-title"><a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
         <p class="excerpt">{{ post.excerpt | strip_html }}&hellip;</p>
@@ -20,11 +25,5 @@ robots: noindex
       </li>
     {% endfor %}
   </ol>
-
-  <hr class="post-list__divider ">
-
-  {% if paginator.previous_page or paginator.next_page %}
-      {% include pagination.html %}
-  {% endif %}
 
 </div>

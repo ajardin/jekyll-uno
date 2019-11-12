@@ -50,5 +50,16 @@
 
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css?{{site.time | date: '%s%N'}}">
   <link rel="canonical" href="{% if page.canonical %}{{ page.canonical }}{% else %}{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}{% endif %}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.baseurl }}/feed.xml">
+
+  {% if page.url != '/' %}
+    {% if page.date %}
+      {% assign posts=site.posts | where:"reference", page.reference | sort: 'lang' %}{% for post in posts %}
+      <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />{% endfor %}
+    {% else %}
+      {% assign pages=site.pages | where:"reference", page.reference | sort: 'lang' %}{% for page in pages %}
+      <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url }}" />{% endfor %}
+    {% endif %}
+  {% endif %}
+
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title[page.lang] }}" href="{{ site.feed[page.lang] | prepend: site.baseurl | prepend: site.url }}">
 </head>
