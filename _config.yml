@@ -21,6 +21,11 @@ defaults:
       type: 'posts'
     values:
         layout: 'post'
+  -
+    scope:
+      path: 'assets/*'
+    values:
+      sitemap: false
 
 # Build settings
 destination: _site
@@ -39,5 +44,5 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-plugins: ['jekyll-paginate']
-exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
+plugins: ['jekyll-paginate', 'jekyll-sitemap']
+exclude: ['docker-compose.yml', 'Gemfile', 'Gemfile.lock', 'LICENSE', 'README.md']
